@@ -1,0 +1,40 @@
+public class AllSortFunc {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+//		int[] array = {23,2,56,24,13,15,83,21,90,45,56};
+//		insertsort(array,1);
+		int[] array1 = {23,2,56,24,13,15,83,21,90,45,56};
+		shellsort(array1);
+	}
+	
+	public static void insertsort(int[]array,int jump){
+		int count = 0;
+		for(int num = 0; num < jump; num++){
+			for(int i = num + jump; i < array.length; i++){
+				int temp = array[i];
+				int j = i - jump;
+				while(j>=0&&temp < array[j]){
+					array[j + jump]=array[j];
+					j -= jump;
+					count++;
+				}
+				array[j + jump]=temp;
+			}
+		}
+		 System.out.println("direct insertsort result:"+Arrays.toString(array)+ " count for: "+count+" times");
+	}
+	
+	public static void shellsort(int[]array){
+		int jump = array.length/2;
+		while(jump > 0){
+			//handle the array
+			insertsort(array, jump);
+			jump /= 2;
+		}
+		System.out.println("shellsort result:        "+Arrays.toString(array));
+	}
+}
